@@ -25,13 +25,18 @@ window.onload = function() {};
 var choice_n_random = function(data, n) {
   n = (typeof n !== 'undefined') ?  n : 3;
   var choice = [];
+  var selected = [];
   while(true) {
-    var value = data[Math.floor(Math.random()*data.length)];
-    if(value.description) {
-      choice.push(value);
-      if(choice.length == n) {
-        break;
-      }
+    var nr = Math.floor(Math.random()*data.length);
+    if (selected.indexOf(nr) === -1) {
+      var value = data[nr];
+      if(value.description) {
+        choice.push(value);
+        selected.push(nr)
+        if(choice.length == n) {
+          break;
+        }
+      }  
     }
   }
   return choice;
